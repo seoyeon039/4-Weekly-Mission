@@ -11,6 +11,10 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "rootDir": "./",
+    "outDir": "./dist",
+    "allowSyntheticDefaultImports": true,
+    "noFallthroughCasesInSwitch": true,
     "jsx": "preserve",
     "incremental": true,
     "paths": {

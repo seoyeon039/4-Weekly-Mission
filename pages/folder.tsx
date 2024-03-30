@@ -1,4 +1,5 @@
 import Footer from "@/components/Footer";
+import LinkAdd from "@/components/LinkAdd";
 import NavigationBar from "@/components/Navbar";
 import axios from "@/lib/axios";
 import { useEffect, useState } from "react";
@@ -32,6 +33,7 @@ export default function FolderPage() {
   return (
     <>
       <NavigationBar className="folderNav" profileData={profileData} isLoginStatus={isLoginStatus}/>
+      <LinkAdd />
       <div>안녕 folder페이지!</div>
       <Footer />
     </>

@@ -17,16 +17,16 @@ function Footer() {
         </div>
         <div className={styles.snsLinks}>
           <Link href="https://www.facebook.com/" target='_blank' rel='noreferrer'>
-            <Image src={facebook} alt="facebook" />
+            <Image src={facebook} width={20} height={20} alt="facebook" />
           </Link>
           <Link href="https://twitter.com/" target='_blank' rel='noreferrer'>
-            <Image src={twitter} alt="twitter" />
+            <Image src={twitter} width={20} height={20} alt="twitter" />
           </Link>
           <Link href="https://www.youtube.com/" target='_blank' rel='noreferrer'>
-            <Image src={youtube} alt="youtube" />
+            <Image src={youtube} width={20} height={20} alt="youtube" />
           </Link>
           <Link href="https://www.instagram.com/" target='_blank' rel='noreferrer'>
-            <Image src={instagram} alt="instagram" />
+            <Image src={instagram} width={20} height={20} alt="instagram" />
           </Link>
         </div>
       </div>

@@ -1,6 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack', 'file-loader'],
+    });
+  
+    return config;
+  },
   images: {
     remotePatterns: [
       {
@@ -10,6 +18,7 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'codeit-images.codeit.com',
+        pathname: '/badges/**',
       },
     ],
   },

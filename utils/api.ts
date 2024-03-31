@@ -4,7 +4,6 @@ const SHARED_USER_INFO_URL = `${BASE_URL}/sample/user`;
 const FOLDER_USER_INFO_URL = `${BASE_URL}/users/1`;
 const SHARED_DATA_API_URL = `${BASE_URL}/sample/folder`;
 const FOLDER_LIST_API_URL = `${BASE_URL}/users/1/folders`;
-
 const FOLDER_DATA_API_URL = `${BASE_URL}/users/1/links?folderId=`;
 
 async function getApi(url: string) {

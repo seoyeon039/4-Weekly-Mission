@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import LinkList from "@/components/LinkList";
 import NavigationBar from "@/components/Navbar";
 import { Data } from "@/types/type";
 import { getSampleFolderLinks, getSampleUserInfo } from "@/utils/api";
@@ -51,7 +52,7 @@ export default function SharedPage() {
     <>
       <NavigationBar className="sharedNav" profileData={profileData} isLoginStatus={isLoginStatus}/>
       <Header folderData={folderData} folderOwnerData={folderOwnerData}/>
-      <div>안녕 shared페이지!</div>
+      <LinkList keyword={"codeit"} linkData={linkData}/>
       <Footer />
     </>
   )

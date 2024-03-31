@@ -5,23 +5,22 @@ import LinkIcon from './AddLinkIcon';
 
 function LinkAdd() {
   const [isAddLinkModalOpen, setIsAddLinkModalOpen] = useState(false);
+  const [isBoxInView, setIsBoxInView] = useState(false);
+  const boxElRef = useRef<HTMLDivElement>(null);
 
   const openAddLinkModal = () => setIsAddLinkModalOpen(true);
   const closeAddLinkModal = () => setIsAddLinkModalOpen(false);
 
-  const [className, setClassName] = useState('headerBottom');
-  const boxElRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        // 관찰 대상이 viewport 안에 들어온 경우 'headerTop' 클래스를 설정
+        // 관찰 대상이 viewport 안에 들어온 경우
         if (entry.intersectionRatio > 0) {
-          setClassName('headerTop');
+          setIsBoxInView(true);
         }
-        // 그 외의 경우 'headerBottom' 클래스를 설정
+        // 그 외의 경우
         else {
-          setClassName('headerBottom');
+          setIsBoxInView(false);
         }
       });
     });
@@ -38,7 +37,7 @@ function LinkAdd() {
 
   return (
     <>
-      <div id="linkAddBox" className={styles[className]}>
+      <div id="linkAddBox" className={styles[isBoxInView ? 'headerTop' : 'headerBottom']}>
         <div className={styles.linkAdd}>
           <div className={styles.linkIcon}><LinkIcon /></div>
           <input className={styles.linkAddInput} type="text" name="linkAdd" placeholder="링크를 추가하세요" />

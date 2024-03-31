@@ -2,8 +2,8 @@ export interface Data {
   url: string;
   id: number;
   imageSource?: string;
-  createdAt?: string;
-  description?: string;
+  createdAt: string;
+  description: string;
 }
 
 export interface ModalBaseProps {

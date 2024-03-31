@@ -119,7 +119,7 @@ export default function FolderPage() {
         folderNameList={folderListData}
         currentId={currentId}
         folderName={folderName}
-        onClick={handleFolderButtonClick}
+        onFolderButtonClick={handleFolderButtonClick}
       />
       <Footer />
     </>

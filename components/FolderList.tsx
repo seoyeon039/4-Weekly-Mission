@@ -20,10 +20,10 @@ interface Props {
   folderNameList: string[];
   currentId: number;
   folderName: string;
-  onClick: (id: number, name: string) => void;
+  onFolderButtonClick: (id: number, name: string) => void;
 }
 
-function FolderList({ keyword, linkData, folderNameList, currentId, folderName, onClick }: Props) {
+function FolderList({ keyword, linkData, folderNameList, currentId, folderName, onFolderButtonClick }: Props) {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const openAddModal = () => setIsAddModalOpen(true);
@@ -34,10 +34,10 @@ function FolderList({ keyword, linkData, folderNameList, currentId, folderName, 
     <div className={styles.content}>
       <div className={styles.container}>
         <div className={styles.folderList}>
-          <Button onClick={() => onClick(0, FIRST_SELECTED_FOLDER)} type="button" key={0}>전체</Button>
+          <Button onClick={() => onFolderButtonClick(0, FIRST_SELECTED_FOLDER)} type="button" key={0}>전체</Button>
           {folderNameList.map((item: any) => {
             return (
-                <Button onClick={() => onClick(item.id, item.name)} type="button" key={item.id}>{item.name}</Button>
+                <Button onClick={() => onFolderButtonClick(item.id, item.name)} type="button" key={item.id}>{item.name}</Button>
             )
           })}
         </div>

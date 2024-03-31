@@ -13,12 +13,12 @@ interface Props {
 
 function LinkList({ keyword, linkData }: Props) {
   const searchData = linkData.filter((data) => {
-    const SEARCH_WORD = keyword.toLowerCase();
-    const URL = data.url.toLowerCase();
-    const TITLE = data.title?.toLowerCase() ?? '';
-    const DESCRIPTION = data.description?.toLowerCase() ?? '';
+    const searchWord = keyword.toLowerCase();
+    const url = data.url.toLowerCase();
+    const title = data.title?.toLowerCase() ?? '';
+    const description = data.description?.toLowerCase() ?? '';
     
-    return URL.includes(SEARCH_WORD) || TITLE.includes(SEARCH_WORD) || DESCRIPTION.includes(SEARCH_WORD)
+    return url.includes(searchWord) || title.includes(searchWord) || description.includes(searchWord)
   });
 
   return (

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { ReactComponent as LinkIcon } from '@/public/images/Icon_link.svg';
 import styles from '@/styles/LinkAdd.module.css';
 import AddLinkModal from '@/modal/addLinkModal/AddLinkModal';
+import LinkIcon from './AddLinkIcon';
 
 function LinkAdd() {
   const [isAddLinkModalOpen, setIsAddLinkModalOpen] = useState(false);

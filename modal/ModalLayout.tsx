@@ -1,7 +1,7 @@
 import styles from "./ModalLayout.module.css";
-import { ReactComponent as CloseIcon } from '@/public/images/Icon_close.svg';
 import { ReactNode } from "react";
 import { ModalBaseProps } from "@/types/type";
+import CloseIconImage from "@/components/CloseIconImage";
 
 interface LayoutProps extends ModalBaseProps {
   title: string,
@@ -20,7 +20,7 @@ function ModalLayout({ title, children, isOpenModal, closeModal }: LayoutProps) 
       <div className={styles.container}>
         <div className={styles.modalTitle}>{title}</div>
         <div className={styles.closeButton} onClick={closeModal}>
-          <CloseIcon fill={closeBtnBackground} stroke={closeBtnIcon}/>
+          <CloseIconImage fill={closeBtnBackground} stroke={closeBtnIcon}/>
         </div>
         {children}
       </div>

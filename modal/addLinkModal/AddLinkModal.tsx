@@ -1,7 +1,7 @@
 import ModalLayout from "@/modal/ModalLayout";
 import { useState } from "react";
 import { MODAL_TYPE } from "@/constants/modal_constants";
-import { DATA } from "@/constants/folderlist_mock_data";
+import { DATA } from "@/constants/folderList_mock_data";
 import { ModalBaseProps } from "@/types/type";
 import IconCheck from "@/public/images/Icon_check.svg";
 import styles from "./AddLinkModal.module.css";

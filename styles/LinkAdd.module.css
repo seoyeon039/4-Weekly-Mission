@@ -31,7 +31,7 @@
   left: 15px;
 }
 
-.linkAdd input {
+.linkAddInput {
   width: 100%;
   padding: 22px 20px;
   border-radius: 15px;
@@ -43,6 +43,10 @@
   font-size: 16px;
   font-weight: 400;
   padding: 22px;
+}
+
+.linkAddInput:focus {
+  outline: none;
 }
 
 .addButton {

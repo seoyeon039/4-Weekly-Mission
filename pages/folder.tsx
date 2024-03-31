@@ -1,27 +1,31 @@
+import { getFolderLinksData, getFolderLists, getFolderUserInfo } from "@/utils/api";
+import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
+import { Data } from "@/types/type";
 import FolderList from "@/components/FolderList";
 import Footer from "@/components/Footer";
 import LinkAdd from "@/components/LinkAdd";
 import NavigationBar from "@/components/Navbar";
-import { Data } from "@/types/type";
-import { getFolderLinksData, getFolderLists, getFolderUserInfo } from "@/utils/api";
-import { useEffect, useState } from "react";
+import SearchBar from "@/components/SearchBar";
 
 const FIRST_SELECTED_FOLDER = "전체";
+const INITIAL_VALUE = {
+  profileImageSource: '',
+  email: '',
+}
 
 interface SearchData extends Data {
   title?: string;
 }
 
 export default function FolderPage() {
+  const [profileData, setProfileData] = useState(INITIAL_VALUE);
   const [isLoginStatus, setIsLoginStatus] = useState(false);
-  const [profileData, setProfileData] = useState({
-    profileImageSource: '',
-    email: '',
-  });
-  const [folderListData, setFolderListData] = useState([]);
+  const [folderListData, setFolderListData] = useState<string[]>([]);
   const [linkData, setLinkData] = useState<SearchData[]>([]);
   const [currentId, setCurrentId] = useState(0);
   const [folderName, setFolderName] = useState(FIRST_SELECTED_FOLDER);
+  const [search, setSearch] = useState('');
+  const [searchWord, setSearchWord] = useState('');
 
   const getProfileData = async () => {
     const { data }  = await getFolderUserInfo();
@@ -40,6 +44,19 @@ export default function FolderPage() {
   useEffect(() => {
     getProfileData();
   }, []);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  }
+
+  const handleCloseButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
+    setSearch('');
+    setSearchWord('');
+  }
+
+  const handleSubmit = (searchQuery: string) => {
+    setSearchWord(searchQuery);
+  };
 
   //button의 id와 이름 가져오는 함수.
   const handleFolderButtonClick = (id: number, name: string) => {
@@ -90,8 +107,14 @@ export default function FolderPage() {
     <>
       <NavigationBar className="folderNav" profileData={profileData} isLoginStatus={isLoginStatus}/>
       <LinkAdd />
+      <SearchBar
+        inputValue={search}
+        searchWord={searchWord}
+        onChange={handleChange}
+        onClick={handleCloseButtonClick}
+        onSubmit={handleSubmit}/>
       <FolderList
-        keyword={""}
+        keyword={searchWord}
         linkData={linkData}
         folderNameList={folderListData}
         currentId={currentId}

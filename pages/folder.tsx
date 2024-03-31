@@ -1,7 +1,7 @@
 import Footer from "@/components/Footer";
 import LinkAdd from "@/components/LinkAdd";
 import NavigationBar from "@/components/Navbar";
-import axios from "@/lib/axios";
+import { getFolderUserInfo } from "@/utils/api";
 import { useEffect, useState } from "react";
 
 export default function FolderPage() {
@@ -11,16 +11,15 @@ export default function FolderPage() {
     email: '',
   });
 
-  async function getProfileData() {
-    const res = await axios.get('/users/1');
-    const { data } = res.data;
-
+  const getProfileData = async () => {
+    const { data }  = await getFolderUserInfo();
+    
     if (!data[0]) return;
 
     const purifiedData = {
-      profileImageSource: data[0].image_source,
-      email: data[0].email,
-    }
+        profileImageSource: data[0].image_source,
+        email: data[0].email,
+      }
 
     setProfileData(purifiedData);
     setIsLoginStatus(true);

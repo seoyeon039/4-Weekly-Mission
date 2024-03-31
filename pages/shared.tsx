@@ -1,8 +1,8 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import NavigationBar from "@/components/Navbar";
-import axios from "@/lib/axios";
 import { Data } from "@/types/type";
+import { getSampleFolderLinks, getSampleUserInfo } from "@/utils/api";
 import { useEffect, useState } from "react";
 
 export default function SharedPage() {
@@ -20,10 +20,9 @@ export default function SharedPage() {
   });
   const [linkData, setLinkData] = useState<Data[]>([]);
 
-  async function getProfileData() {
-    const res = await axios.get('/sample/user');
-    const data = res.data;
-
+  const getProfileData = async () => {
+    const data  = await getSampleUserInfo();
+    
     if (!data) return;
 
     setProfileData(data);
@@ -34,9 +33,8 @@ export default function SharedPage() {
     getProfileData();
   }, []);
 
-  async function getFolderData() {
-    const res = await axios.get('/sample/folder');
-    const { folder } = res.data;
+  const getFolderData = async () => {
+    const { folder } = await getSampleFolderLinks();
     
     if (!folder) return;
 

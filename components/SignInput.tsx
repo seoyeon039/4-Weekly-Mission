@@ -11,7 +11,7 @@ interface Props {
   placeholder: string;
 }
 
-function SignInput({ type = 'text', placeholder }:Props) {
+function SignInput({ type, placeholder }:Props) {
   const [isHidden, setIsHidden] = useState(type);
   const [inputValue, setInputValue] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
@@ -56,7 +56,7 @@ function SignInput({ type = 'text', placeholder }:Props) {
         <div className={styles.inputContainer}>
           <input
             type={isHidden}
-            className={styles.inputBox}
+            className={styles[errorMsg ? 'errorBorder' : 'inputBox']}
             onChange={handleChange}
             onBlur={handleLoad}
             placeholder={placeholder}/>

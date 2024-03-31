@@ -6,7 +6,7 @@
   border-radius: 12px;
 }
 
-input:focus {
+.inputText:focus {
   outline: none;
   border-color: var(--primary);
 }

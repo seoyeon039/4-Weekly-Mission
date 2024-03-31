@@ -4,9 +4,9 @@ import { useScript } from "@/utils/hooks/useScript";
 import { useEffect } from "react";
 import { FacebookShareButton } from "react-share";
 import ModalLayout from "@/modal/ModalLayout";
-import IconKakao from "../images/Icon_Kakao.svg";
-import IconFacebook from "../images/Icon_Facebook.svg";
-import IconLink from "../images/Icon_link.svg";
+import IconKakao from "@/public/images/Icon_Kakao.svg";
+import IconFacebook from "@/public/images/Icon_Facebook.svg";
+import IconLink from "@/public/images/Icon_link.svg";
 import styles from "./ShareModal.module.css";
 import Image from "next/image";
 

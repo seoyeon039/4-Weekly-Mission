@@ -1,11 +1,85 @@
-import SignInput from "@/components/SignInput"
-import Link from "next/link"
+import Footer from "@/components/Footer";
+import NavigationBar from "@/components/Navbar";
+import SignInput from "@/components/SignInput";
+import Image from "next/image";
+import Link from "next/link";
+import styles from "@/styles/Home.module.css";
+import headerImg from "@/public/images/main_header_img.png";
+import saveImg from "@/public/images/example_img1.svg";
+import manageImg from "@/public/images/example_img2.svg";
+import shareImg from "@/public/images/example_img3.svg";
+import searchImg from "@/public/images/example_img4.svg";
+
+const INITIAL_VALUE = {
+  email: '',
+  profileImageSource: '',
+}
 
 export default function Home() {
   return (
     <>
-      <div>위클리미션go!</div>
-      <Link href='/shared'>
+      <NavigationBar className="folderNav" profileData={INITIAL_VALUE} isLoginStatus={false} />
+        <header className={styles.headline}>
+          <h1 className={styles.headlineTitle}>
+            <span className={`${styles.headlineKeyword} ${styles.accent}`}>세상의 모든 정보</span>를
+            쉽게 저장하고 관리해 보세요
+          </h1>
+          <Link className={styles.addLinkTag} href='/'><button className={styles.addLinkButton}>링크 추가하기</button></Link>
+          <Image src={headerImg} alt="linkbrary-header-image" />
+        </header>
+
+        <section className={styles.content}>
+        <div className={styles.options}>
+          <h2 className={styles.optionsTitle}>
+            <span className={`${styles.save} ${styles.accent}`}>원하는 링크</span>를
+            저장하세요
+          </h2>
+          <p className={styles.optionDescribe}>
+            나중에 읽고 싶은 글, 다시 보고 싶은 영상,
+            사고 싶은 옷, 기억하고 싶은 모든 것을
+            한 공간에 저장하세요
+          </p>
+          <Image src={saveImg} alt="linkbrary-header-image" />
+        </div>
+
+        <div className={styles.options}>
+          <h2 className={styles.optionsTitle}>
+            링크를 폴더로
+            <span className={`${styles.manage} ${styles.accent}`}>관리</span>하세요
+          </h2>
+          <p className={styles.optionDescribe}>
+            나만의 폴더를 무제한으로 만들고
+            다양하게 활용할 수 있습니다.
+          </p>
+          <Image src={manageImg} alt="linkbrary-header-image" />
+        </div>
+
+        <div className={styles.options}>
+          <h2 className={styles.optionsTitle}>
+            저장한 링크를
+            <span className={`${styles.share} ${styles.accent}`}>공유</span>해 보세요
+          </h2>
+          <p className={styles.optionDescribe}>
+            여러 링크를 폴더에 담고 공유할 수 있습니다.
+            가족, 친구, 동료들에게 쉽고 빠르게 링크를 
+            공유해 보세요.
+          </p>
+          <Image src={shareImg} alt="linkbrary-header-image" />
+        </div>
+
+        <div className={styles.options}>
+          <h2 className={styles.optionsTitle}>
+            저장한 링크를
+            <span className={`${styles.search} ${styles.accent}`}>검색</span>해 보세요
+          </h2>
+          <p className={styles.optionDescribe}>
+            중요한 정보들을 검색으로 쉽게 찾아보세요.
+          </p>
+          <Image src={searchImg} alt="linkbrary-header-image" />
+        </div>
+        </section>
+      <Footer />
+      {/* <Link href='/shared'>
         <button>shared 페이지</button>
       </Link>
       <Link href='/folder'>
@@ -14,7 +88,7 @@ export default function Home() {
       <br/>
       <p>input 컴포넌트 테스트</p>
       <SignInput type="email" placeholder="e-mail"/>
-      <SignInput type="password" placeholder="password"/>
+      <SignInput type="password" placeholder="password"/> */}
     </>
   )
 }

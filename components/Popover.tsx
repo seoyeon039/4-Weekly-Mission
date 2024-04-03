@@ -13,10 +13,10 @@ function Popover({ isOpen, url }: Props) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const openAddLinkModal = () => setIsAddLinkModalOpen(true);
-  const closeAddLinkModal = (): void => setIsAddLinkModalOpen(false);
+  const closeAddLinkModal = () => setIsAddLinkModalOpen(false);
 
   const openDeleteModal = () => setIsDeleteModalOpen(true);
-  const closeDeleteModal = (): void => setIsDeleteModalOpen(false);
+  const closeDeleteModal = () => setIsDeleteModalOpen(false);
 
   const noBubble = (e: MouseEvent) => {
     e.preventDefault();

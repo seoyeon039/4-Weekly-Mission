@@ -9,16 +9,24 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@svgr/webpack": "^8.1.0",
+    "axios": "^1.6.8",
+    "date-fns": "^3.6.0",
+    "next": "13.5.6",
     "react": "^18",
     "react-dom": "^18",
-    "next": "13.5.6"
+    "react-intersection-observer": "^9.8.1",
+    "react-share": "^5.1.0",
+    "styled-components": "^6.1.8"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "13.5.6"
+    "eslint-config-next": "13.5.6",
+    "file-loader": "^6.2.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.4.3"
   }
 }

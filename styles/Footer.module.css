@@ -1,0 +1,67 @@
+.footerInner {
+  background: var(--black);
+  display: flex;
+  height: 160px;
+  padding: 32px 104px 64px 104px;
+  margin-top: 60px;
+  justify-content: space-between;
+}
+
+.companyInfo {
+  color: #676767;
+  text-align: center;
+  font-family: Acme;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.QnALinks {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.QnALinks a{
+  color: #CFCFCF;
+  font-family: Acme;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.snsLinks img {
+  margin-left: 8px;
+}
+
+/* tablet-size */
+@media (max-width: 1199px) {
+}
+
+/* mobile-size */
+@media (max-width: 767px) {
+  .footerInner {
+    display: grid;
+    grid-template-areas: 
+      "qna sns"
+      "company .";
+    padding: 32px 32px 64px;
+    justify-items: start;
+  }
+
+  .companyInfo {
+    grid-area: company;
+    text-align: end;
+  }
+
+  .QnALinks {
+    grid-area: qna;
+  }
+
+  .snsLinks {
+    grid-area: sns;
+  }
+
+  .snsLinks img {
+    margin-left: 12px;
+  }
+}

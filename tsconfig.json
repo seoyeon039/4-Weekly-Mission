@@ -11,12 +11,24 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "rootDir": "./",
+    "outDir": "./dist",
+    "allowSyntheticDefaultImports": true,
+    "noFallthroughCasesInSwitch": true,
     "jsx": "preserve",
     "incremental": true,
     "paths": {
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "custom.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "styles",
+    "pages",
+    "public"
+  ],
   "exclude": ["node_modules"]
 }

@@ -27,14 +27,16 @@ function FolderList({ keyword, linkData, folderNameList, currentId, folderName, 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const openAddModal = () => setIsAddModalOpen(true);
-  const closeAddModal = (): void => setIsAddModalOpen(false);
+  const closeAddModal = () => setIsAddModalOpen(false);
 
   return (
     <>
     <div className={styles.content}>
       <div className={styles.container}>
         <div className={styles.folderList}>
-          <Button onClick={() => onFolderButtonClick(0, FIRST_SELECTED_FOLDER)} type="button" key={0}>전체</Button>
+          <Button onClick={() => onFolderButtonClick(0, FIRST_SELECTED_FOLDER)} type="button" key={0}>
+            {FIRST_SELECTED_FOLDER}
+          </Button>
           {folderNameList.map((item: any) => {
             return (
                 <Button onClick={() => onFolderButtonClick(item.id, item.name)} type="button" key={item.id}>{item.name}</Button>

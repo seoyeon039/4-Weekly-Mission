@@ -23,12 +23,12 @@ function AddLinkModal({ isOpenModal, closeModal }: ModalBaseProps) {
     >
       <div className={styles.linkName}>링크 주소</div>
       <div className={styles.linkFolders}>
-        {DATA.map((item, idx) => {
+        {DATA.map((item) => {
           return (
             <>
               <button
                 type="button"
-                key={idx}
+                key={item.folderName}
                 className={clickItem === item.folderName ? styles.folderClicked : styles.folder}
                 onClick={() => handleClick(item.folderName)}
               >

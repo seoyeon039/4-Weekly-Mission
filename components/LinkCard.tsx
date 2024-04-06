@@ -1,5 +1,5 @@
 import { MouseEvent, useState } from 'react';
-import { Data } from '@/types/type';
+import { LinkCardData } from '@/types/type';
 import formatDate from '@/utils/formatDate';
 import diffTime from '@/utils/diffTime';
 import star from '@/public/images/Icon_star.svg';
@@ -11,7 +11,7 @@ import Image from 'next/image';
 
 
 interface Props {
-  item: Data
+  item: LinkCardData
 }
 
 function LinkCard({item: {url, id, imageSource, createdAt, description}}: Props) {

@@ -1,6 +1,6 @@
 import { getFolderLinksData, getFolderLists, getFolderUserInfo } from "@/utils/api";
 import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
-import { Data } from "@/types/type";
+import { LinkCardData } from "@/types/type";
 import FolderList from "@/components/FolderList";
 import Footer from "@/components/Footer";
 import LinkAdd from "@/components/LinkAdd";
@@ -13,7 +13,7 @@ const INITIAL_VALUE = {
   email: '',
 }
 
-interface SearchData extends Data {
+interface SearchData extends LinkCardData {
   title?: string;
 }
 
@@ -84,7 +84,7 @@ export default function FolderPage() {
     
     if (!data) return;
 
-    const purifiedData = data.map((item: any): Data => 
+    const purifiedData = data.map((item: any) => 
       (
         {
           url: item.url,

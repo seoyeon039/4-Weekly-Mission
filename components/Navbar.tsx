@@ -23,7 +23,7 @@ function NavigationBar({ className, profileData, isLoginStatus }: Props) {
         </div>
       )
       :(
-        <Link href='../signin.html' className={styles.loginBtn}>로그인</Link>
+        <Link href='/signin' className={styles.loginBtn}>로그인</Link>
       )
       }
     </nav>

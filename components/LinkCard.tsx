@@ -8,6 +8,7 @@ import noImg from '@/public/images/noImg.svg';
 import styles from '@/styles/LinkCard.module.css';
 import Popover from './Popover';
 import Image from 'next/image';
+import Link from 'next/link';
 
 
 interface Props {
@@ -23,7 +24,7 @@ function LinkCard({item: {url, id, imageSource, createdAt, description}}: Props)
   }
 
   return (
-    <a href={url} target='_blank' rel='noreferrer'>
+    <Link href={url} target='_blank' rel='noreferrer'>
     <div className={styles.card} key={id}>
       <Image className={styles.star} src={star} alt='star' />
       <div
@@ -40,7 +41,7 @@ function LinkCard({item: {url, id, imageSource, createdAt, description}}: Props)
         <p className={styles.linkCreatedDate}>{formatDate(createdAt)}</p>
       </div>
     </div>
-    </a>
+    </Link>
   )
 }
 

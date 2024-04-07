@@ -1,6 +1,5 @@
 import Footer from "@/components/Footer";
 import NavigationBar from "@/components/Navbar";
-import SignInput from "@/components/SignInput";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "@/styles/Home.module.css";
@@ -79,16 +78,6 @@ export default function Home() {
         </div>
         </section>
       <Footer />
-      {/* <Link href='/shared'>
-        <button>shared 페이지</button>
-      </Link>
-      <Link href='/folder'>
-        <button>folder 페이지</button>
-      </Link>
-      <br/>
-      <p>input 컴포넌트 테스트</p>
-      <SignInput type="email" placeholder="e-mail"/>
-      <SignInput type="password" placeholder="password"/> */}
     </>
   )
 }

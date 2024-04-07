@@ -24,7 +24,7 @@ function LinkCard({item: {url, id, imageSource, createdAt, description}}: Props)
   }
 
   return (
-    <Link href={url} target='_blank' rel='noreferrer'>
+    <Link href={url} target='_blank'>
     <div className={styles.card} key={id}>
       <Image className={styles.star} src={star} alt='star' />
       <div

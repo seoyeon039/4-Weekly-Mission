@@ -1,4 +1,6 @@
 import { SIGNIN } from "@/constants/signInput_constant";
+import { ChangeEvent, useState } from "react";
+import { validEmailInput, validPasswordInput } from "@/utils/checkValid";
 import SignInput from "@/components/SignInput";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,6 +10,21 @@ import googleIcon from '@/public/images/Icon_Google.svg';
 import kakaoIcon from '@/public/images/Icon_Kakao2.svg';
 
 export default function SignIn() {
+  const [emailErrorMsg, setEmailErrorMsg] = useState('');
+  const [pwErrorMsg, setPWErrorMsg] = useState('');
+  const [inputValue, setInputValue] = useState('');
+  const { email, password } = SIGNIN;
+
+  const handleEmailBlur = () => {
+    setEmailErrorMsg(validEmailInput(inputValue));
+  }
+  const handlePWBlur = () => {
+    setPWErrorMsg(validPasswordInput(inputValue));
+  }
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  }
+
   return (
     <>
     <div className={styles.content}>
@@ -19,9 +36,8 @@ export default function SignIn() {
         <Link href='/signup' className={styles.toSignInLink}>회원가입하기</Link>
       </div>
       <form>
-        {SIGNIN.map((item) => {
-          return <SignInput key={item.label} item={item} />
-        })}
+        <SignInput item={email} onChange={handleChange} onBlur={handleEmailBlur} errorMsg={emailErrorMsg}/>
+        <SignInput item={password} onChange={handleChange} onBlur={handlePWBlur} errorMsg={pwErrorMsg}/>
         <button className={styles.confirmBtn} type="submit">로그인</button>
         <div className={styles.snsLogin}>
           소셜로그인

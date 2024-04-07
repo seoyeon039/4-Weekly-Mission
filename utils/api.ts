@@ -54,3 +54,32 @@ export async function loginAccount(userInfo: any) {
   
   return res;
 }
+
+//회원가입 API
+export async function addNewAccount(email: string, password: string) {
+  const response = await fetch('https://bootcamp-api.codeit.kr/api/check-email', {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({"email": email}),
+  });
+
+  if (response.status === 200) {
+    const newAccount = {
+      "email": email,
+      "password": password,
+    }
+    
+    const response = await fetch('https://bootcamp-api.codeit.kr/api/sign-up', {
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newAccount),
+    });
+    const result = await response.json();
+    const accessToken = result.data?.loginUser.accessToken;
+    localStorage.setItem('accessToken', accessToken);
+  }
+}

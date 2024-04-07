@@ -1,5 +1,6 @@
 import { SIGNIN } from "@/constants/signInput_constant";
-import { ChangeEvent, useState } from "react";
+import { useRouter } from "next/router";
+import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 import { validEmailInput, validPasswordInput } from "@/utils/checkValid";
 import SignInput from "@/components/SignInput";
 import Image from "next/image";
@@ -8,22 +9,56 @@ import styles from '@/styles/SignPage.module.css';
 import linkbraryLogo from '@/public/images/logo.svg';
 import googleIcon from '@/public/images/Icon_Google.svg';
 import kakaoIcon from '@/public/images/Icon_Kakao2.svg';
+import errorMessage from '@/constants/error_messages';
+import { loginAccount } from "@/utils/api";
 
 export default function SignIn() {
   const [emailErrorMsg, setEmailErrorMsg] = useState('');
   const [pwErrorMsg, setPWErrorMsg] = useState('');
-  const [inputValue, setInputValue] = useState('');
+  const [emailInputValue, setEmailInputValue] = useState('');
+  const [pwInputValue, setPWInputValue] = useState('');
+  const router = useRouter();
   const { email, password } = SIGNIN;
 
   const handleEmailBlur = () => {
-    setEmailErrorMsg(validEmailInput(inputValue));
+    setEmailErrorMsg(validEmailInput(emailInputValue));
   }
   const handlePWBlur = () => {
-    setPWErrorMsg(validPasswordInput(inputValue));
+    setPWErrorMsg(validPasswordInput(pwInputValue));
   }
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+    if(e.target.id === "email") setEmailInputValue(e.target.value);
+    if(e.target.id === "password") setPWInputValue(e.target.value);
   }
+
+  const handleSubmit = async(e: KeyboardEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const userInfo = {
+      "email": emailInputValue,
+      "password": pwInputValue,
+    }
+
+    const res = await loginAccount(userInfo);
+    const { data } = await res.json();
+
+    if (res.status === 200) {
+      const accessToken = data?.accessToken;
+      localStorage.setItem('accessToken', accessToken);
+      router.push('/folder')
+    }
+
+    setEmailErrorMsg(errorMessage.CHECK_EMAIL);
+    setPWErrorMsg(errorMessage.CHECK_PW);
+  }
+
+  useEffect(() => {
+  // accessToken이 존재하면 folder로 이동
+  const haveToken = localStorage.getItem('accessToken');
+  if (haveToken) {
+    router.push('/folder')
+  }
+  })
 
   return (
     <>
@@ -35,7 +70,7 @@ export default function SignIn() {
         회원이 아니신가요?
         <Link href='/signup' className={styles.toSignInLink}>회원가입하기</Link>
       </div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <SignInput item={email} onChange={handleChange} onBlur={handleEmailBlur} errorMsg={emailErrorMsg}/>
         <SignInput item={password} onChange={handleChange} onBlur={handlePWBlur} errorMsg={pwErrorMsg}/>
         <button className={styles.confirmBtn} type="submit">로그인</button>

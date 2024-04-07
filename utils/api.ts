@@ -41,3 +41,16 @@ export function getFolderLinksData(id: number|string) {
   const path = FOLDER_DATA_API_URL + id;
   return getApi(path);
 }
+
+//로그인 API
+export async function loginAccount(userInfo: any) {
+  const res = await fetch (`${BASE_URL}/sign-in`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userInfo),
+  });
+  
+  return res;
+}

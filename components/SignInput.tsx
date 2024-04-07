@@ -1,18 +1,20 @@
 import { ChangeEvent, MouseEvent, useState } from 'react';
-import { checkEmailValid } from '@/utils/checkValid';
+import { validEmailInput, validPWCheckInput, validPasswordInput } from '@/utils/checkValid';
 import styles from '@/styles/SignInput.module.css';
 import eyeOff from '@/public/images/Icon_eye-off.svg';
 import eyeOn from '@/public/images/Icon_eye-on.svg';
 import Image from 'next/image';
-import errorMessage from '@/constants/error_messages';
 
 interface Props {
-  type: string;
-  placeholder: string;
+  item: {
+    type: string;
+    label: string;
+    placeholder: string;
+  }
 }
 
-function SignInput({ type, placeholder }:Props) {
-  const [isHidden, setIsHidden] = useState(type);
+function SignInput({ item }: Props) {
+  const [isHidden, setIsHidden] = useState(item.type);
   const [inputValue, setInputValue] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -24,43 +26,24 @@ function SignInput({ type, placeholder }:Props) {
     setInputValue(e.target.value);
   }
 
-  const validEmailInput = () => {
-    if (inputValue === '') {
-      setErrorMsg(errorMessage.EMAIL_REQUIRED);
-      return;
-    } 
-    if (!checkEmailValid(inputValue)) {
-      setErrorMsg(errorMessage.EMAIL_INVALID);
-      return;
-    }
-    setErrorMsg('');
-  }
-
-  const validPasswordInput = () => {
-    if (inputValue === '') {
-      setErrorMsg(errorMessage.PW_REQUIRED);
-      return;
-    }
-    setErrorMsg('');
-  }
-
   const handleLoad = () => {
-    if (type === "email") return validEmailInput();
-    if (type === "password") return validPasswordInput();
+    if (item.label === "e-mail") setErrorMsg(validEmailInput(inputValue));
+    if (item.label === "password") setErrorMsg(validPasswordInput(inputValue));
+    if (item.label === "비밀번호 확인") setErrorMsg(validPWCheckInput(inputValue));
   }
 
   return (
     <div className={styles.content}>
       <div>
-        <label className={styles.inputName}>{placeholder}</label>
+        <label className={styles.inputName}>{item.label}</label>
         <div className={styles.inputContainer}>
           <input
             type={isHidden}
             className={styles[errorMsg ? 'errorBorder' : 'inputBox']}
             onChange={handleChange}
             onBlur={handleLoad}
-            placeholder={placeholder}/>
-          {type === "password" &&
+            placeholder={item.placeholder}/>
+          {item.type === "password" &&
             <button className={styles.pwHiddenBtn} type="button" onClick={handleClick}>
               <Image src={isHidden === "password" ? eyeOff : eyeOn} alt="eye-btn" />
             </button>

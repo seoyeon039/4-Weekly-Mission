@@ -33,25 +33,23 @@ function SignInput({ item }: Props) {
   }
 
   return (
-    <div className={styles.content}>
-      <div>
-        <label className={styles.inputName}>{item.label}</label>
-        <div className={styles.inputContainer}>
-          <input
-            type={isHidden}
-            className={styles[errorMsg ? 'errorBorder' : 'inputBox']}
-            onChange={handleChange}
-            onBlur={handleLoad}
-            placeholder={item.placeholder}/>
-          {item.type === "password" &&
-            <button className={styles.pwHiddenBtn} type="button" onClick={handleClick}>
-              <Image src={isHidden === "password" ? eyeOff : eyeOn} alt="eye-btn" />
-            </button>
-          }
-          {errorMsg && <div className={styles.errorMessage}>{errorMsg}</div>}
-        </div>
+    <>
+      <label className={styles.inputName}>{item.label}</label>
+      <div className={styles.inputContainer}>
+        <input
+          type={isHidden}
+          className={styles[errorMsg ? 'errorBorder' : 'inputBox']}
+          onChange={handleChange}
+          onBlur={handleLoad}
+          placeholder={item.placeholder}/>
+        {item.type === "password" &&
+          <button className={styles.pwHiddenBtn} type="button" onClick={handleClick}>
+            <Image src={isHidden === "password" ? eyeOff : eyeOn} alt="eye-btn" />
+          </button>
+        }
+        {errorMsg && <div className={styles.errorMessage}>{errorMsg}</div>}
       </div>
-    </div>
+    </>
   )
 }
 

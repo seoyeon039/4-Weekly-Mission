@@ -1,8 +1,5 @@
-.content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.inputName {
+  margin: 24px auto 12px;
 }
 
 .inputContainer {
@@ -25,10 +22,6 @@
 .inputBox:focus {
   border-color: var(--primary);
   outline: none;
-}
-
-.inputName {
-  margin: 24px auto 12px;
 }
 
 .pwHiddenBtn {

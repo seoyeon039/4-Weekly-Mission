@@ -1,11 +1,11 @@
 export const SIGNIN = [
   {
-    label: 'e-mail',
+    label: '이메일',
     type: "email",
     placeholder: '이메일을 입력해 주세요'
   },
   {
-    label: 'password',
+    label: '비밀번호',
     type: "password",
     placeholder: '비밀번호를 입력해 주세요'
   },
@@ -13,12 +13,12 @@ export const SIGNIN = [
 
 export const SIGNUP = [
   {
-    label: 'e-mail',
+    label: '이메일',
     type: "email",
     placeholder: '이메일을 입력해 주세요'
   },
   {
-    label: 'password',
+    label: '비밀번호',
     type: "password",
     placeholder: '영문, 숫자를 조합해 8자 이상 입력해 주세요'
   },

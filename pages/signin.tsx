@@ -1,26 +1,31 @@
-import SignInput from "@/components/SignInput";
-import Link from "next/link";
-import linkbraryLogo from '@/public/images/logo.svg';
-import Image from "next/image";
 import { SIGNIN } from "@/constants/signInput_constant";
+import SignInput from "@/components/SignInput";
+import Image from "next/image";
+import Link from "next/link";
+import styles from '@/styles/SignPage.module.css';
+import linkbraryLogo from '@/public/images/logo.svg';
 import googleIcon from '@/public/images/Icon_Google.svg';
 import kakaoIcon from '@/public/images/Icon_Kakao2.svg';
 
 export default function SignIn() {
   return (
     <>
-      <Link href='/'>
-        <Image src={linkbraryLogo} alt="LinkbraryLogo" />
+    <div className={styles.content}>
+      <Link href='/' className={styles.logoImg}>
+        <Image src={linkbraryLogo} width={210} alt="LinkbraryLogo" />
       </Link>
-      <Link href='/signup'>회원가입하기</Link>
+      <div className={styles.toSignIn}>
+        회원이 아니신가요?
+        <Link href='/signup' className={styles.toSignInLink}>회원가입하기</Link>
+      </div>
       <form>
         {SIGNIN.map((item) => {
-          return <SignInput key={item.type} item={item} />
+          return <SignInput key={item.label} item={item} />
         })}
-        <button id="confirm-button" type="submit">로그인</button>
-        <div className="sns-login">
+        <button className={styles.confirmBtn} type="submit">로그인</button>
+        <div className={styles.snsLogin}>
           소셜로그인
-          <div className="sns-link-buttons">
+          <div className={styles.snsLinkButtons}>
             <Link href="https://www.google.com/" target='_blank'>
               <Image src={googleIcon} alt="google" />
             </Link>
@@ -30,6 +35,7 @@ export default function SignIn() {
           </div>
         </div>
       </form>
+    </div>
     </>
   )
 }

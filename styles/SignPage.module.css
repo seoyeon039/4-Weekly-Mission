@@ -1,0 +1,55 @@
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background);
+  padding: 238px 0px 252px;
+}
+
+.logoImg {
+  margin: 16px 0;
+}
+
+.toSignIn {
+  margin-bottom: 18px;
+}
+
+.toSignInLink {
+  color: var(--primary);
+  font-size: 16px;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+.confirmBtn {
+  color: #F5F5F5;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  background: var(--gra-purpleblue-to-skyblue);
+  width: 400px;
+  padding: 16px 20px;
+  margin: 6px auto;
+}
+
+.snsLogin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #373740;
+  font-size: 14px;
+  font-weight: 400;
+  background: var(--gray10);
+  border: 1px solid var(--gray20);
+  border-radius: 8px;
+  padding: 12px 24px;
+  margin: 32px auto;
+}
+
+.snsLinkButtons img{
+  width: 42px;
+  margin-left: 16px;
+}

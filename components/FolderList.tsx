@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Data } from "@/types/type";
+import { LinkCardData } from "@/types/type";
 import Button from "./Button";
 import styles from "@/styles/FolderList.module.css";
 import plusIcon from "@/public/images/Icon_plus.svg";
@@ -10,7 +10,7 @@ import Image from "next/image";
 
 const FIRST_SELECTED_FOLDER = "전체";
 
-interface SearchData extends Data {
+interface SearchData extends LinkCardData {
   title?: string;
 }
 
@@ -27,17 +27,21 @@ function FolderList({ keyword, linkData, folderNameList, currentId, folderName, 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const openAddModal = () => setIsAddModalOpen(true);
-  const closeAddModal = (): void => setIsAddModalOpen(false);
+  const closeAddModal = () => setIsAddModalOpen(false);
 
   return (
     <>
     <div className={styles.content}>
       <div className={styles.container}>
         <div className={styles.folderList}>
-          <Button onClick={() => onFolderButtonClick(0, FIRST_SELECTED_FOLDER)} type="button" key={0}>전체</Button>
+          <Button onClick={() => onFolderButtonClick(0, FIRST_SELECTED_FOLDER)} type="button" key={0}>
+            {FIRST_SELECTED_FOLDER}
+          </Button>
           {folderNameList.map((item: any) => {
             return (
-                <Button onClick={() => onFolderButtonClick(item.id, item.name)} type="button" key={item.id}>{item.name}</Button>
+              <Button onClick={() => onFolderButtonClick(item.id, item.name)} type="button" key={item.id}>
+                {item.name}
+              </Button>
             )
           })}
         </div>

@@ -1,7 +1,7 @@
 import { MODAL_TYPE } from "@/constants/modal_constants";
 import { ModalBaseProps } from "@/types/type";
 import { useScript } from "@/utils/hooks/useScript";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FacebookShareButton } from "react-share";
 import ModalLayout from "@/modal/ModalLayout";
 import IconKakao from "@/public/images/Icon_Kakao.svg";
@@ -10,10 +10,13 @@ import IconLink from "@/public/images/Icon_link.svg";
 import styles from "./ShareModal.module.css";
 import Image from "next/image";
 
-const currentUrl = window.location.href;
-
 function ShareModal({ isOpenModal, closeModal }: ModalBaseProps) {
   const { share } = MODAL_TYPE;
+  const [currentUrl, setCurrentUrl] = useState("");
+
+  useEffect(() => {
+    setCurrentUrl(window.location.href);
+  }, []);
 
 	const status = useScript("https://developers.kakao.com/sdk/js/kakao.js");
 	

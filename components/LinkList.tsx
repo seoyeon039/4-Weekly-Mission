@@ -1,8 +1,8 @@
 import LinkCard from './LinkCard';
 import styles from '@/styles/LinkList.module.css';
-import { Data } from '@/types/type';
+import { LinkCardData } from '@/types/type';
 
-interface SearchData extends Data {
+interface SearchData extends LinkCardData {
   title?: string;
 }
 

@@ -1,4 +1,4 @@
-export interface Data {
+export interface LinkCardData {
   url: string;
   id: number;
   imageSource?: string;

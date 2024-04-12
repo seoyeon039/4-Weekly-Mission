@@ -1,4 +1,4 @@
-import { SIGNUP } from "@/constants/signInput_constant";
+import { SIGN_UP_INIT_INFO } from "@/constants/signInput_constant";
 import SignInput from "@/components/SignInput";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,7 +17,7 @@ export default function SignUp() {
   const [emailInputValue, setEmailInputValue] = useState('');
   const [pwInputValue, setPWInputValue] = useState('');
   const [pwCheckInputValue, setPWCheckInputValue] = useState('');
-  const { email, password, pwCheck } = SIGNUP;
+  const { email, password, pwCheck } = SIGN_UP_INIT_INFO;
 
   const handleEmailBlur = () => {
     setEmailErrorMsg(validEmailInput(emailInputValue));

@@ -1,4 +1,4 @@
-export const SIGNIN = {
+export const SIGN_IN_INIT_INFO = {
   email: {
     id: "email",
     label: '이메일',
@@ -13,7 +13,7 @@ export const SIGNIN = {
   },
 }
 
-export const SIGNUP = {
+export const SIGN_UP_INIT_INFO = {
   email: {
     id: "email",
     label: '이메일',

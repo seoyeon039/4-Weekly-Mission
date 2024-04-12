@@ -1,4 +1,4 @@
-import { SIGNIN } from "@/constants/signInput_constant";
+import { SIGN_IN_INIT_INFO } from "@/constants/signInput_constant";
 import { useRouter } from "next/router";
 import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 import { validEmailInput, validPasswordInput } from "@/utils/checkValid";
@@ -20,7 +20,7 @@ export default function SignIn() {
   const [emailInputValue, setEmailInputValue] = useState('');
   const [pwInputValue, setPWInputValue] = useState('');
   const router = useRouter();
-  const { email, password } = SIGNIN;
+  const { email, password } = SIGN_IN_INIT_INFO;
 
   const handleEmailBlur = () => {
     setEmailErrorMsg(validEmailInput(emailInputValue));
@@ -55,12 +55,12 @@ export default function SignIn() {
   }
 
   useEffect(() => {
-  // accessToken이 존재하면 folder로 이동
-  const haveToken = localStorage.getItem(ACCESS_TOKEN_KEY);
-  if (haveToken) {
-    router.push('/folder')
-  }
-  })
+    // accessToken이 존재하면 folder로 이동
+    const haveToken = localStorage.getItem(ACCESS_TOKEN_KEY);
+    if (haveToken) {
+      router.push('/folder')
+    }
+  }, [router]);
 
   return (
     <>

@@ -84,7 +84,7 @@ export default function FolderPage() {
     
     if (!data) return;
 
-    const purifiedData = data.map((item: any) => 
+    const purifiedData = data.map((item: any): LinkCardData => 
       (
         {
           url: item.url,

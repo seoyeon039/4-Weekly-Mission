@@ -5,6 +5,8 @@ import SignInput from "@/components/SignInput";
 import Link from "next/link";
 import styles from '@/styles/SignPage.module.css';
 import LinkbraryLogo from '@/public/images/logo.svg';
+import GoogleIcon from '@/public/images/Icon_Google.svg';
+import KakaoIcon from '@/public/images/Icon_Kakao2.svg';
 
 
 export default function SignUp() {
@@ -50,10 +52,10 @@ export default function SignUp() {
             다른 방식으로 가입하기
             <div className={styles.snsLinkButtons}>
               <Link href="https://www.google.com/" target='_blank'>
-                <img src='/images/Icon_Google.svg' alt="google" />
+                <GoogleIcon className={styles.snsLinkButtonImg} />
               </Link>
               <Link href="https://www.kakaocorp.com/page/" target='_blank'>
-                <img src='/images/Icon_Kakao2.svg' alt="kakao" />
+                <KakaoIcon className={styles.snsLinkButtonImg} />
               </Link>
             </div>
           </div>

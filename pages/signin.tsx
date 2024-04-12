@@ -12,6 +12,8 @@ import kakaoIcon from '@/public/images/Icon_Kakao2.svg';
 import errorMessage from '@/constants/error_messages';
 import { loginAccount } from "@/utils/api";
 
+const ACCESS_TOKEN_KEY = 'accessToken';
+
 export default function SignIn() {
   const [emailErrorMsg, setEmailErrorMsg] = useState('');
   const [pwErrorMsg, setPWErrorMsg] = useState('');
@@ -44,7 +46,7 @@ export default function SignIn() {
 
     if (res.status === 200) {
       const accessToken = data?.accessToken;
-      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
       router.push('/folder')
     }
 
@@ -54,7 +56,7 @@ export default function SignIn() {
 
   useEffect(() => {
   // accessToken이 존재하면 folder로 이동
-  const haveToken = localStorage.getItem('accessToken');
+  const haveToken = localStorage.getItem(ACCESS_TOKEN_KEY);
   if (haveToken) {
     router.push('/folder')
   }

@@ -15,24 +15,11 @@
   cursor: pointer;
 }
 
-.shareBtn img {
+.folderMenuBtnImg {
   width: 18px;
   height: 18px;
   margin-right: 4px;
 }
-
-.editBtn img {
-  width: 18px;
-  height: 18px;
-  margin-right: 4px;
-}
-
-.deleteBtn img {
-  width: 18px;
-  height: 18px;
-  margin-right: 4px;
-}
-
 
 /* mobile-size */
 @media (max-width: 767px) {

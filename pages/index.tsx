@@ -1,13 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import Footer from "@/components/Footer";
 import NavigationBar from "@/components/Navbar";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "@/styles/Home.module.css";
 import headerImg from "@/public/images/main_header_img.png";
-import saveImg from "@/public/images/example_img1.svg";
-import manageImg from "@/public/images/example_img2.svg";
-import shareImg from "@/public/images/example_img3.svg";
-import searchImg from "@/public/images/example_img4.svg";
 
 const INITIAL_VALUE = {
   email: '',
@@ -23,7 +20,11 @@ export default function Home() {
             <span className={`${styles.headlineKeyword} ${styles.accent}`}>세상의 모든 정보</span>를
             쉽게 저장하고 관리해 보세요
           </h1>
-          <Link className={styles.addLinkTag} href='/'><button className={styles.addLinkButton}>링크 추가하기</button></Link>
+          <Link className={styles.addLinkTag} href='/signup'>
+            <button className={styles.addLinkButton}>
+              링크 추가하기
+            </button>
+          </Link>
           <Image src={headerImg} alt="linkbrary-header-image" />
         </header>
 
@@ -38,7 +39,7 @@ export default function Home() {
             사고 싶은 옷, 기억하고 싶은 모든 것을
             한 공간에 저장하세요
           </p>
-          <Image src={saveImg} alt="linkbrary-header-image" />
+          <img src='/images/example_img1.svg' alt="linkbrary-header-image" />
         </div>
 
         <div className={styles.options}>
@@ -50,7 +51,7 @@ export default function Home() {
             나만의 폴더를 무제한으로 만들고
             다양하게 활용할 수 있습니다.
           </p>
-          <Image src={manageImg} alt="linkbrary-header-image" />
+          <img src='/images/example_img2.svg' alt="linkbrary-header-image" />
         </div>
 
         <div className={styles.options}>
@@ -63,7 +64,7 @@ export default function Home() {
             가족, 친구, 동료들에게 쉽고 빠르게 링크를 
             공유해 보세요.
           </p>
-          <Image src={shareImg} alt="linkbrary-header-image" />
+          <img src='/images/example_img3.svg' alt="linkbrary-header-image" />
         </div>
 
         <div className={styles.options}>
@@ -74,7 +75,7 @@ export default function Home() {
           <p className={styles.optionDescribe}>
             중요한 정보들을 검색으로 쉽게 찾아보세요.
           </p>
-          <Image src={searchImg} alt="linkbrary-header-image" />
+          <img src='/images/example_img4.svg' alt="linkbrary-header-image" />
         </div>
         </section>
       <Footer />

@@ -1,16 +1,16 @@
-import { SIGN_IN_INIT_INFO } from "@/constants/signInput_constant";
-import { useRouter } from "next/router";
 import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 import { validEmailInput, validPasswordInput } from "@/utils/checkValid";
+import { SIGN_IN_INIT_INFO } from "@/constants/signInput_constant";
+import { loginAccount } from "@/utils/api";
+import { useRouter } from "next/router";
 import SignInput from "@/components/SignInput";
 import Image from "next/image";
 import Link from "next/link";
 import styles from '@/styles/SignPage.module.css';
-import linkbraryLogo from '@/public/images/logo.svg';
+import LinkbraryLogo from '@/public/images/logo.svg';
 import googleIcon from '@/public/images/Icon_Google.svg';
 import kakaoIcon from '@/public/images/Icon_Kakao2.svg';
 import errorMessage from '@/constants/error_messages';
-import { loginAccount } from "@/utils/api";
 
 const ACCESS_TOKEN_KEY = 'accessToken';
 
@@ -60,13 +60,14 @@ export default function SignIn() {
     if (haveToken) {
       router.push('/folder')
     }
+    return;
   }, [router]);
 
   return (
     <>
     <div className={styles.content}>
       <Link href='/' className={styles.logoImg}>
-        <Image src={linkbraryLogo} width={210} alt="LinkbraryLogo" />
+        <LinkbraryLogo width={210}/>
       </Link>
       <div className={styles.toSignIn}>
         회원이 아니신가요?
@@ -80,10 +81,10 @@ export default function SignIn() {
           소셜로그인
           <div className={styles.snsLinkButtons}>
             <Link href="https://www.google.com/" target='_blank'>
-              <Image src={googleIcon} alt="google" />
+              <img src="/images/Icon_Google.svg" alt="google" />
             </Link>
             <Link href="https://www.kakaocorp.com/page/" target='_blank'>
-              <Image src={kakaoIcon} alt="kakao" />
+              <img src="/images/Icon_Kakao2.svg" alt="kakao" />
             </Link>
           </div>
         </div>

@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { LinkCardData } from "@/types/type";
+import LinkList from "./LinkList";
+import FolderMenu from "./FolderMenu";
+import AddModal from "@/modal/addModal/AddModal";
+import PlusIcon from "@/public/images/Icon_plus.svg";
 import Button from "./Button";
 import styles from "@/styles/FolderList.module.css";
-import plusIcon from "@/public/images/Icon_plus.svg";
-import LinkList from "./LinkList";
-import AddModal from "@/modal/addModal/AddModal";
-import FolderMenu from "./FolderMenu";
-import Image from "next/image";
 
 const FIRST_SELECTED_FOLDER = "전체";
 
@@ -47,7 +46,7 @@ function FolderList({ keyword, linkData, folderNameList, currentId, folderName, 
         </div>
           <button className={styles.addFolderBtn} type="button" onClick={openAddModal}>
             폴더 추가
-            <Image src={plusIcon} alt="plus-Icon" />
+            <PlusIcon className={styles.addFolderBtnImg} />
           </button>
           <AddModal isOpenModal={isAddModalOpen} closeModal={closeAddModal}/>
       </div>

@@ -1,7 +1,7 @@
 import { ChangeEvent, KeyboardEvent, MouseEvent } from 'react';
 import styles from '@/styles/SearchBar.module.css';
-import CloseIconImage from './CloseIconImage';
-import SearchIconImage from './SearchIconImage';
+import CloseIcon from '@/public/images/Icon_close.svg';
+import SearchIcon from '@/public/images/Icon_search.svg';
 
 interface Props {
   inputValue: string;
@@ -28,7 +28,7 @@ function SearchBar({ inputValue, searchWord, onChange, onClick, onSubmit }: Prop
       <form className={styles.container} onKeyDown={handleSubmit}>
         <div className={styles.searchBar}>
           <div className={styles.searchIcon}>
-            <SearchIconImage stroke={color}/>
+            <SearchIcon stroke={color}/>
           </div>
           <input
             type="text"
@@ -43,7 +43,7 @@ function SearchBar({ inputValue, searchWord, onChange, onClick, onSubmit }: Prop
               className={styles.closeBtn}
               onClick={onClick}
             >
-              <CloseIconImage fill={closeBtnBackground} stroke={closeBtnIcon}/>
+              <CloseIcon fill={closeBtnBackground} stroke={closeBtnIcon}/>
             </button>
             )
           }

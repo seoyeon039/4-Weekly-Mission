@@ -1,8 +1,7 @@
 import { ChangeEvent, MouseEvent, useState } from 'react';
 import styles from '@/styles/SignInput.module.css';
-import eyeOff from '@/public/images/Icon_eye-off.svg';
-import eyeOn from '@/public/images/Icon_eye-on.svg';
-import Image from 'next/image';
+import EyeOff from '@/public/images/Icon_eye-off.svg';
+import EyeOn from '@/public/images/Icon_eye-on.svg';
 
 interface Props {
   item: {
@@ -36,7 +35,7 @@ function SignInput({ item, onChange, onBlur, errorMsg }: Props) {
           placeholder={item.placeholder}/>
         {item.type === "password" &&
           <button className={styles.pwHiddenBtn} type="button" onClick={handleClick}>
-            <Image src={isHidden === "password" ? eyeOff : eyeOn} alt="eye-btn" />
+            {isHidden === "password" ? <EyeOff /> : <EyeOn />}
           </button>
         }
         {errorMsg && <div className={styles.errorMessage}>{errorMsg}</div>}

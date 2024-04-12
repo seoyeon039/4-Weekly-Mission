@@ -28,7 +28,7 @@ function AddLinkModal({ isOpenModal, closeModal }: ModalBaseProps) {
             <>
               <button
                 type="button"
-                key={item.folderName}
+                key={item.id}
                 className={clickItem === item.folderName ? styles.folderClicked : styles.folder}
                 onClick={() => handleClick(item.folderName)}
               >

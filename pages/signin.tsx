@@ -4,13 +4,12 @@ import { SIGN_IN_INIT_INFO } from "@/constants/signInput_constant";
 import { loginAccount } from "@/utils/api";
 import { useRouter } from "next/router";
 import SignInput from "@/components/SignInput";
-import Image from "next/image";
+import errorMessage from '@/constants/error_messages';
 import Link from "next/link";
 import styles from '@/styles/SignPage.module.css';
 import LinkbraryLogo from '@/public/images/logo.svg';
-import googleIcon from '@/public/images/Icon_Google.svg';
-import kakaoIcon from '@/public/images/Icon_Kakao2.svg';
-import errorMessage from '@/constants/error_messages';
+import GoogleIcon from '@/public/images/Icon_Google.svg';
+import KakaoIcon from '@/public/images/Icon_Kakao2.svg';
 
 const ACCESS_TOKEN_KEY = 'accessToken';
 
@@ -81,10 +80,10 @@ export default function SignIn() {
           소셜로그인
           <div className={styles.snsLinkButtons}>
             <Link href="https://www.google.com/" target='_blank'>
-              <img src="/images/Icon_Google.svg" alt="google" />
+              <GoogleIcon className={styles.snsLinkButtonImg} />
             </Link>
             <Link href="https://www.kakaocorp.com/page/" target='_blank'>
-              <img src="/images/Icon_Kakao2.svg" alt="kakao" />
+              <KakaoIcon className={styles.snsLinkButtonImg} />
             </Link>
           </div>
         </div>

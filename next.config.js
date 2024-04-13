@@ -21,6 +21,10 @@ const nextConfig = {
         hostname: 'codeit-images.codeit.com',
         pathname: '/badges/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+      },
     ],
   },
 }

@@ -1,8 +1,8 @@
 const BASE_URL = 'https://bootcamp-api.codeit.kr/api'
 
-const SHARED_USER_INFO_URL = `${BASE_URL}/sample/user`;
+const SHARED_USER_INFO_URL = `${BASE_URL}/users`;
+const SHARED_DATA_API_URL = `${BASE_URL}/folders/`;
 const FOLDER_USER_INFO_URL = `${BASE_URL}/users/1`;
-const SHARED_DATA_API_URL = `${BASE_URL}/sample/folder`;
 const FOLDER_LIST_API_URL = `${BASE_URL}/users/1/folders`;
 const FOLDER_DATA_API_URL = `${BASE_URL}/users/1/links?folderId=`;
 
@@ -17,13 +17,31 @@ async function getApi(url: string) {
 }
 
 //shared 페이지 유저 데이터 조회
-export function getSampleUserInfo() {
-  return getApi(SHARED_USER_INFO_URL);
+export async function getSharedUserInfo() {
+  const accessToken = localStorage.getItem('accessToken');
+  const response = await fetch(SHARED_USER_INFO_URL, {
+    method: 'GET',
+    headers: {
+      "Authorization": `Bearer ${accessToken}`
+    }
+  });
+
+  if (!response?.ok) {
+    throw new Error("정보를 불러오는데 실패했습니다.")
+  }
+
+  const body = await response.json();
+  return body;
+}
+
+//shared 페이지 폴더 소유자 데이터 조회
+export function getSharedFolderOwner(id: number) {
+  return getApi(`${SHARED_USER_INFO_URL}/${id}`);
 }
 
 //shared 페이지 폴더 데이터 조회
-export function getSampleFolderLinks() {
-  return getApi(SHARED_DATA_API_URL);
+export function getSharedFolderLinks(id: number) {
+  return getApi(SHARED_DATA_API_URL + id);
 }
 
 //folder 페이지 유저 데이터 조회

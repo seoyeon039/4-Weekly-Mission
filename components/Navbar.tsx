@@ -7,7 +7,7 @@ interface Props {
   className: string;
   profileData: {
     email: string,
-    profileImageSource: string,
+    image_source: string,
   };
   isLoginStatus: boolean;
   }
@@ -20,7 +20,7 @@ function NavigationBar({ className, profileData, isLoginStatus }: Props) {
       </Link>
       {isLoginStatus ? (
         <div className={styles.account}>
-          <Image src={profileData.profileImageSource} width={32} height={32} alt='profile' />
+          <Image src={profileData.image_source} width={32} height={32} alt='profile' />
           <p>{profileData.email}</p>
         </div>
       )

@@ -8,7 +8,7 @@ import headerImg from "@/public/images/main_header_img.png";
 
 const INITIAL_VALUE = {
   email: '',
-  profileImageSource: '',
+  image_source: '',
 }
 
 export default function Home() {

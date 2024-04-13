@@ -1,4 +1,4 @@
-import { getSharedFolderInfo, getSharedFolderLinks, getSharedFolderOwner, getSharedUserInfo } from "@/utils/api";
+import { getSharedFolderInfo, getSharedFolderLinks, getSharedFolderOwner, getUserInfo } from "@/utils/api";
 import { ChangeEvent, MouseEvent, useCallback, useEffect, useState } from "react";
 import { LinkCardData } from "@/types/type";
 import Footer from "@/components/Footer";
@@ -46,7 +46,7 @@ export default function SharedPage() {
   };
 
   const getProfileData = async () => {
-    const { data } = await getSharedUserInfo();
+    const { data } = await getUserInfo();
     
     if (!data) return;
 

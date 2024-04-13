@@ -5,7 +5,6 @@ import { DATA } from "@/constants/folderList_mock_data";
 import { ModalBaseProps } from "@/types/type";
 import IconCheck from "@/public/images/Icon_check.svg";
 import styles from "./AddLinkModal.module.css";
-import Image from "next/image";
 
 function AddLinkModal({ isOpenModal, closeModal }: ModalBaseProps) {
   const [clickItem, setClickItem] = useState('');
@@ -40,7 +39,9 @@ function AddLinkModal({ isOpenModal, closeModal }: ModalBaseProps) {
                   </span>
                   <span className={styles.linkCount}>{item.linkCount}개 링크</span>
                 </div>
-                {clickItem === item.folderName && <Image src={IconCheck} width={14} height={14} alt="Icon-check" />}
+                {clickItem === item.folderName &&
+                  <IconCheck />
+                }
               </button>
             </>
           )

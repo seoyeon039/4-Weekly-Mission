@@ -18,8 +18,8 @@ export default function SignIn() {
   const [pwErrorMsg, setPWErrorMsg] = useState('');
   const [emailInputValue, setEmailInputValue] = useState('');
   const [pwInputValue, setPWInputValue] = useState('');
-  const router = useRouter();
   const { email, password } = SIGN_IN_INIT_INFO;
+  const router = useRouter();
 
   const handleEmailBlur = () => {
     setEmailErrorMsg(validEmailInput(emailInputValue));
@@ -35,16 +35,10 @@ export default function SignIn() {
   const handleSubmit = async(e: KeyboardEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const userInfo = {
-      "email": emailInputValue,
-      "password": pwInputValue,
-    }
+    const res = await loginAccount(emailInputValue, pwInputValue);
 
-    const res = await loginAccount(userInfo);
-    const { data } = await res.json();
-
-    if (res.status === 200) {
-      const accessToken = data?.accessToken;
+    if (res.data) {
+      const accessToken = res.data?.accessToken;
       localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
       router.push('/folder')
     }

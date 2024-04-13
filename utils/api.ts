@@ -43,21 +43,23 @@ export function getFolderLinksData(id: number|string) {
 }
 
 //로그인 API
-export async function loginAccount(userInfo: any) {
+export async function loginAccount(email: string, password: string) {
   const res = await fetch (`${BASE_URL}/sign-in`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(userInfo),
+    body: JSON.stringify({"email": email, "password": password}),
   });
-  
-  return res;
+
+  const body = await res.json();
+
+  return body;
 }
 
-//회원가입 API
-export async function addNewAccount(email: string, password: string) {
-  const response = await fetch('https://bootcamp-api.codeit.kr/api/check-email', {
+//회원가입 전 이메일 중복체크
+export async function checkAccount(email: string) {
+  const res = await fetch(`${BASE_URL}/check-email`, {
     method: 'POST',
     headers: {
       "Content-Type": "application/json",
@@ -65,21 +67,22 @@ export async function addNewAccount(email: string, password: string) {
     body: JSON.stringify({"email": email}),
   });
 
-  if (response.status === 200) {
-    const newAccount = {
-      "email": email,
-      "password": password,
-    }
-    
-    const response = await fetch('https://bootcamp-api.codeit.kr/api/sign-up', {
-      method: 'POST',
-      headers: {
-      'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newAccount),
-    });
-    const result = await response.json();
-    const accessToken = result.data?.loginUser.accessToken;
-    localStorage.setItem('accessToken', accessToken);
-  }
+  const body = await res.json();
+
+  return body;
+}
+
+//회원가입 API
+export async function addNewUser(email: string, password: string) {
+  const res = await fetch(`${BASE_URL}/sign-up`, {
+    method: 'POST',
+    headers: {
+    'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({"email": email, "password": password}),
+  });
+
+  const body = await res.json();
+  
+  return body;
 }

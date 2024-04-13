@@ -40,8 +40,14 @@ export function getSharedFolderOwner(id: number) {
 }
 
 //shared 페이지 폴더 데이터 조회
-export function getSharedFolderLinks(id: number) {
-  return getApi(SHARED_DATA_API_URL + id);
+export function getSharedFolderInfo(folderId: string | string[] | undefined) {
+  return getApi(SHARED_DATA_API_URL + folderId);
+}
+
+//shared 페이지 폴더의 링크 데이터 조회
+export function getSharedFolderLinks(userId: number, folderId: string | string[] | undefined) {
+  const query = `/${userId}/links?folderId=${folderId}`
+  return getApi(SHARED_USER_INFO_URL + query);
 }
 
 //folder 페이지 유저 데이터 조회

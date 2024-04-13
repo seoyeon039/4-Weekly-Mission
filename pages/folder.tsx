@@ -9,7 +9,7 @@ import SearchBar from "@/components/SearchBar";
 
 const FIRST_SELECTED_FOLDER = "전체";
 const INITIAL_VALUE = {
-  profileImageSource: '',
+  image_source: '',
   email: '',
 }
 
@@ -32,12 +32,7 @@ export default function FolderPage() {
     
     if (!data[0]) return;
 
-    const purifiedData = {
-        profileImageSource: data[0].image_source,
-        email: data[0].email,
-      }
-
-    setProfileData(purifiedData);
+    setProfileData(data[0]);
     setIsLoginStatus(true);
   }
 
@@ -84,19 +79,7 @@ export default function FolderPage() {
     
     if (!data) return;
 
-    const purifiedData = data.map((item: any): LinkCardData => 
-      (
-        {
-          url: item.url,
-          id: item.id,
-          imageSource: item.image_source,
-          createdAt: item.created_at,
-          description: item.description,
-        }
-      )
-    )
-
-    setLinkData(purifiedData);
+    setLinkData(data);
   }
 
   useEffect(() => {

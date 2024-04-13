@@ -1,8 +1,8 @@
 export interface LinkCardData {
   url: string;
   id: number;
-  imageSource?: string;
-  createdAt: string;
+  image_source?: string;
+  created_at: string;
   description: string;
 }
 

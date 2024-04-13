@@ -1,4 +1,4 @@
-import { getSharedFolderLinks, getSharedFolderOwner, getSharedUserInfo } from "@/utils/api";
+import { getSharedFolderInfo, getSharedFolderLinks, getSharedFolderOwner, getSharedUserInfo } from "@/utils/api";
 import { ChangeEvent, MouseEvent, useCallback, useEffect, useState } from "react";
 import { LinkCardData } from "@/types/type";
 import Footer from "@/components/Footer";
@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import LinkList from "@/components/LinkList";
 import NavigationBar from "@/components/Navbar";
 import SearchBar from "@/components/SearchBar";
+import { useRouter } from "next/router";
 
 const INITIAL_PROFILE = {
   image_source: '',
@@ -28,6 +29,8 @@ export default function SharedPage() {
   const [linkData, setLinkData] = useState<LinkCardData[]>([]);
   const [search, setSearch] = useState('');
   const [searchWord, setSearchWord] = useState('');
+  const router = useRouter();
+  const { folderId } = router.query;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -69,17 +72,29 @@ export default function SharedPage() {
   }, [getFolderOwnerData]);
 
   const getFolderData = useCallback(async () => {
-    const { folder } = await getSharedFolderLinks(userId);
+    const { data } = await getSharedFolderInfo(folderId);
     
-    if (!folder) return;
+    if (!data[0]) return;
 
-    setFolderData(folder);
-    setLinkData(folder.links);
-  }, [userId])
+    setFolderData(data[0]);
+  }, [folderId])
 
   useEffect(() => {
     getFolderData();
   }, [getFolderData])
+
+  const getFolderLinksData = useCallback(async () => {
+    const { data } = await getSharedFolderLinks(userId, folderId);
+    
+    if (!data) return;
+
+    setFolderData(data);
+    setLinkData(data);
+  }, [userId, folderId])
+
+  useEffect(() => {
+    getFolderLinksData();
+  }, [getFolderLinksData])
 
   return (
     <>

@@ -26,6 +26,7 @@
     "custom.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "next.config.js",
     "styles",
     "pages",
     "public"

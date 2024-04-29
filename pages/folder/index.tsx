@@ -1,5 +1,6 @@
-import { getFolderLinksData, getFolderLists, getFolderUserInfo } from "@/utils/api";
+import { getAllLinksData, getFolderLists, getUserInfo } from "@/utils/api";
 import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { LinkCardData } from "@/types/type";
 import FolderList from "@/components/FolderList";
 import Footer from "@/components/Footer";
@@ -9,7 +10,7 @@ import SearchBar from "@/components/SearchBar";
 
 const FIRST_SELECTED_FOLDER = "전체";
 const INITIAL_VALUE = {
-  profileImageSource: '',
+  image_source: '',
   email: '',
 }
 
@@ -26,18 +27,23 @@ export default function FolderPage() {
   const [folderName, setFolderName] = useState(FIRST_SELECTED_FOLDER);
   const [search, setSearch] = useState('');
   const [searchWord, setSearchWord] = useState('');
+  const router = useRouter();
+
+  useEffect(() => {
+    const checkAccessToken = async () => {
+      const accessToken = localStorage.getItem('accessToken');
+      if (!accessToken) await router.push('/signin');
+    };
+  
+    checkAccessToken();
+  }, [router])
 
   const getProfileData = async () => {
-    const { data }  = await getFolderUserInfo();
+    const { data }  = await getUserInfo();
     
     if (!data[0]) return;
 
-    const purifiedData = {
-        profileImageSource: data[0].image_source,
-        email: data[0].email,
-      }
-
-    setProfileData(purifiedData);
+    setProfileData(data[0]);
     setIsLoginStatus(true);
   }
 
@@ -62,46 +68,34 @@ export default function FolderPage() {
   const handleFolderButtonClick = (id: number, name: string) => {
     setCurrentId(id);
     setFolderName(name);
+    router.push(`/folder/${currentId}`)
   }
 
   //폴더 이름 가져오는 함수.
   const getFolderData = async () => {
     const { data } = await getFolderLists();
     
-    if (!data) return;
+    if (!data.folder) return;
 
-    setFolderListData(data);
+    setFolderListData(data.folder);
   }
 
   useEffect(() => {
     getFolderData();
   }, [])
 
-  //폴더 안에 저장된 링크를 가져오는 함수
-  const getLinkData = async (id: string|number) => {
-    if (id === 0) id = '';
-    const { data } = await getFolderLinksData(id);
+//전체 데이터 불러오는 함수
+  const getLinkDataAll = async () => {
+    const { data } = await getAllLinksData();
     
-    if (!data) return;
+    if (!data.folder) return;
 
-    const purifiedData = data.map((item: any) => 
-      (
-        {
-          url: item.url,
-          id: item.id,
-          imageSource: item.image_source,
-          createdAt: item.created_at,
-          description: item.description,
-        }
-      )
-    )
-
-    setLinkData(purifiedData);
+    setLinkData(data.folder);
   }
 
   useEffect(() => {
-    getLinkData(currentId);
-  }, [currentId])
+    getLinkDataAll();
+  }, [])
 
   return (
     <>

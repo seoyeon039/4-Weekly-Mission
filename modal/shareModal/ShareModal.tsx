@@ -4,9 +4,6 @@ import { useScript } from "@/utils/hooks/useScript";
 import { useEffect, useState } from "react";
 import { FacebookShareButton } from "react-share";
 import ModalLayout from "@/modal/ModalLayout";
-import IconKakao from "@/public/images/Icon_Kakao.svg";
-import IconFacebook from "@/public/images/Icon_Facebook.svg";
-import IconLink from "@/public/images/Icon_link.svg";
 import styles from "./ShareModal.module.css";
 import Image from "next/image";
 
@@ -58,14 +55,14 @@ function ShareModal({ isOpenModal, closeModal }: ModalBaseProps) {
             className={styles.shareKakao}
             type="button"
             onClick={handleKakaoButton}>
-            <Image src={IconKakao} alt={IconKakao} />
+            <Image src='/images/Icon_Kakao.svg' width={18} height={18} alt='IconKakao' />
           </button>
           <p className={styles.linkButtonName}>카카오톡</p>
         </div>
         <FacebookShareButton url={currentUrl}>
           <div className={styles.shareButton}>
             <button className={styles.shareFacebook} type="button">
-              <Image src={IconFacebook} alt={IconFacebook} />
+              <Image src='/images/Icon_Facebook.svg' width={18} height={18} alt='IconFacebook' />
             </button>
             <p className={styles.linkButtonName}>페이스북</p>
           </div>
@@ -75,7 +72,7 @@ function ShareModal({ isOpenModal, closeModal }: ModalBaseProps) {
             className={styles.copyLink}
             type="button"
             onClick={() => handleCopyClipBoard(currentUrl)}>
-            <Image src={IconLink} alt={IconLink} />
+            <Image src='/images/Icon_link.svg' width={18} height={18} alt='IconLink' />
           </button>
           <p className={styles.linkButtonName}>링크 복사</p>
         </div>

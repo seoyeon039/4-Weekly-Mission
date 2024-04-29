@@ -7,8 +7,9 @@
   padding: 20px 0 60px;
 }
 
-.headerItems img {
-  width: 64px;
+.headerItemImg {
+  border-radius: 50%;
+  border: 2px solid var(--gray20);
 }
 
 .username {

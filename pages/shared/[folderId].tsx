@@ -1,10 +1,8 @@
-import { getSharedFolderInfo, getSharedFolderLinks, getSharedFolderOwner, getUserInfo } from "@/utils/api";
+import { getSharedFolderInfo, getSharedFolderLinks, getSharedFolderOwner } from "@/utils/api";
 import { ChangeEvent, MouseEvent, useCallback, useEffect, useState } from "react";
 import { LinkCardData } from "@/types/type";
-import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import LinkList from "@/components/LinkList";
-import NavigationBar from "@/components/Navbar";
 import SearchBar from "@/components/SearchBar";
 import { useRouter } from "next/router";
 

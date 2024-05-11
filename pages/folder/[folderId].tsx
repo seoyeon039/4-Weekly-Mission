@@ -1,4 +1,4 @@
-import { getFolderLinksData, getFolderLists, getUserInfo } from "@/utils/api";
+import { getFolderLinksData, getFolderLists } from "@/utils/api";
 import { ChangeEvent, MouseEvent, useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { LinkCardData } from "@/types/type";

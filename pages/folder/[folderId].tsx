@@ -3,24 +3,16 @@ import { ChangeEvent, MouseEvent, useCallback, useEffect, useState } from "react
 import { useRouter } from "next/router";
 import { LinkCardData } from "@/types/type";
 import FolderList from "@/components/FolderList";
-import Footer from "@/components/Footer";
 import LinkAdd from "@/components/LinkAdd";
-import NavigationBar from "@/components/Navbar";
 import SearchBar from "@/components/SearchBar";
 
 const FIRST_SELECTED_FOLDER = "전체";
-const INITIAL_VALUE = {
-  image_source: '',
-  email: '',
-}
 
 interface SearchData extends LinkCardData {
   title?: string;
 }
 
 export default function FolderPage() {
-  const [profileData, setProfileData] = useState(INITIAL_VALUE);
-  const [isLoginStatus, setIsLoginStatus] = useState(false);
   const [folderListData, setFolderListData] = useState<string[]>([]);
   const [linkData, setLinkData] = useState<SearchData[]>([]);
   const [currentId, setCurrentId] = useState(0);
@@ -29,29 +21,6 @@ export default function FolderPage() {
   const [searchWord, setSearchWord] = useState('');
   const router = useRouter();
   const { folderId } = router.query;
-  
-
-  useEffect(() => {
-    const checkAccessToken = async () => {
-      const accessToken = localStorage.getItem('accessToken');
-      if (!accessToken) await router.push('/signin');
-    };
-  
-    checkAccessToken();
-  }, [router])
-
-  const getProfileData = async () => {
-    const { data }  = await getUserInfo();
-    
-    if (!data[0]) return;
-
-    setProfileData(data[0]);
-    setIsLoginStatus(true);
-  }
-
-  useEffect(() => {
-    getProfileData();
-  }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -102,7 +71,6 @@ export default function FolderPage() {
 
   return (
     <>
-      <NavigationBar className="folderNav" profileData={profileData} isLoginStatus={isLoginStatus}/>
       <LinkAdd />
       <SearchBar
         inputValue={search}
@@ -118,7 +86,6 @@ export default function FolderPage() {
         folderName={folderName}
         onFolderButtonClick={handleFolderButtonClick}
       />
-      <Footer />
     </>
   )
 }

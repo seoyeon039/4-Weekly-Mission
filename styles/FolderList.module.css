@@ -10,6 +10,12 @@
   width: 1060px;
 }
 
+.folderList {
+  display: flex;
+  gap: 8px 0;
+  flex-wrap: wrap;
+}
+
 .addFolderBtn {
   color: var(--primary);
   font-size: 16px;
@@ -47,12 +53,6 @@
     width: 80px;
   }
 
-  .folderList {
-    display: flex;
-    gap: 12px 0;
-    flex-wrap: wrap;
-  }
-
   .linkControlBtn {
     width: 704px;
   }
@@ -69,12 +69,6 @@
     padding: 0 32px;
     margin-top: 32px;
     width: 100%;
-  }
-
-  .folderList {
-    display: flex;
-    gap: 12px 0;
-    flex-wrap: wrap;
   }
 
   .addFolderBtn {

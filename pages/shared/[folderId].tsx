@@ -21,8 +21,6 @@ const INITIAL_FOLDER_OWNER = {
 }
 
 export default function SharedPage() {
-  const [isLoginStatus, setIsLoginStatus] = useState(false);
-  const [profileData, setProfileData] = useState(INITIAL_PROFILE);
   const [userId, setUserId] = useState(0);
   const [folderData, setFolderData] = useState(INITIAL_FOLDER);
   const [folderOwnerData, setFolderOwnerData] = useState(INITIAL_FOLDER_OWNER);
@@ -45,20 +43,6 @@ export default function SharedPage() {
     setSearchWord(searchQuery);
   };
 
-  const getProfileData = async () => {
-    const { data } = await getUserInfo();
-    
-    if (!data) return;
-
-    setProfileData(data[0]);
-    setUserId(data[0].id);
-    setIsLoginStatus(true);
-  }
-
-  useEffect(() => {
-    getProfileData();
-  }, []);
-
   const getFolderOwnerData = useCallback(async () => {
     const { data } = await getSharedFolderOwner(userId);
     
@@ -74,7 +58,7 @@ export default function SharedPage() {
   const getFolderData = useCallback(async () => {
     const { data } = await getSharedFolderInfo(folderId);
     
-    if (!data[0]) return;
+    if (!data) return;
 
     setFolderData(data[0]);
   }, [folderId])
@@ -98,7 +82,6 @@ export default function SharedPage() {
 
   return (
     <>
-      <NavigationBar className="sharedNav" profileData={profileData} isLoginStatus={isLoginStatus}/>
       <Header folderData={folderData} folderOwnerData={folderOwnerData}/>
       <SearchBar
         inputValue={search}
@@ -107,7 +90,6 @@ export default function SharedPage() {
         onClick={handleCloseButtonClick}
         onSubmit={handleSubmit}/>
       <LinkList keyword={searchWord} linkData={linkData}/>
-      <Footer />
     </>
   )
 }

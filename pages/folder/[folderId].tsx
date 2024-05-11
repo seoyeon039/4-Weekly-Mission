@@ -40,7 +40,7 @@ export default function FolderPage() {
     setCurrentId(id);
     setFolderName(name);
     if (id === 0) return router.push('/folder');
-    router.push(`/folder/${id}`)
+    router.push(`/folder/${id}`);
   }
 
   //폴더 이름 가져오는 함수.

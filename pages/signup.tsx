@@ -1,6 +1,6 @@
 import { validEmailInput, validPWCheckInput, validPasswordInput } from "@/utils/checkValid";
 import { SIGN_UP_INIT_INFO } from "@/constants/signInput_constant";
-import { ChangeEvent, KeyboardEvent, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 import { addNewUser, checkAccount } from "@/utils/api";
 import { useRouter } from "next/router";
 import SignInput from "@/components/SignInput";
@@ -21,6 +21,15 @@ export default function SignUp() {
   const [pwCheckInputValue, setPWCheckInputValue] = useState('');
   const { email, password, pwCheck } = SIGN_UP_INIT_INFO;
   const router = useRouter();
+
+  useEffect(() => {
+    // accessToken이 존재하면 folder로 이동
+    const haveToken = localStorage.getItem(ACCESS_TOKEN_KEY);
+    if (haveToken) {
+      router.push('/folder')
+    }
+    return;
+  }, [router]);
 
   const handleEmailBlur = () => {
     setEmailErrorMsg(validEmailInput(emailInputValue));

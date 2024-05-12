@@ -43,24 +43,24 @@ export default function FolderPage() {
 
   //폴더 이름 가져오는 함수.
   const getFolderData = async () => {
-    const { data } = await getFolderLists();
+    const data = await getFolderLists();
     
-    if (!data.folder) return;
+    if (!data) return;
 
-    setFolderListData(data.folder);
+    setFolderListData(data);
   }
 
   useEffect(() => {
     getFolderData();
   }, [])
 
-//전체 데이터 불러오는 함수
+//전체 폴더 저장되어 있는 모든 링크 데이터 불러오는 함수
   const getLinkDataAll = async () => {
-    const { data } = await getAllLinksData();
-    
-    if (!data.folder) return;
+    const data = await getAllLinksData();
 
-    setLinkData(data.folder);
+    if (!data) return;
+
+    setLinkData(data);
   }
 
   useEffect(() => {

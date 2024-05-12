@@ -30,9 +30,9 @@ function PageLayout({ children }: PageLayoutProp) {
   }, [router])
 
   const getProfileData = async () => {
-    const { data }  = await getUserInfo();
+    const data = await getUserInfo();
     
-    if (!data[0]) return;
+    if (!data) return;
 
     setProfileData(data[0]);
     setIsLoginStatus(true);

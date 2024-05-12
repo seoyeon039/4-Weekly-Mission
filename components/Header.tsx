@@ -2,16 +2,14 @@ import styles from '@/styles/Header.module.css';
 import Image from 'next/image';
 
 interface Props {
-  folderData: {
-    name: string,
-  };
+  folderName: string;
   folderOwnerData:{
     image_source: string,
     name: string,
   };
 }
 
-function Header({folderData, folderOwnerData}: Props) {
+function Header({folderName, folderOwnerData}: Props) {
   return (
     <header className={styles.headerItems}>
       <Image
@@ -22,7 +20,7 @@ function Header({folderData, folderOwnerData}: Props) {
         alt="userProfile"
       />
       <div className={styles.username}>{folderOwnerData.name}</div>
-      <div className={styles.folderName}>{folderData.name}</div>
+      <div className={styles.folderName}>{folderName}</div>
     </header>
   )
 }

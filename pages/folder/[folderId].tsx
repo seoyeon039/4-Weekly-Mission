@@ -45,11 +45,11 @@ export default function FolderPage() {
 
   //폴더 이름 가져오는 함수.
   const getFolderData = async () => {
-    const { data } = await getFolderLists();
+    const data = await getFolderLists();
     
-    if (!data.folder) return;
+    if (!data) return;
 
-    setFolderListData(data.folder);
+    setFolderListData(data);
   }
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export default function FolderPage() {
 
   //폴더 안에 저장된 링크를 가져오는 함수
   const getLinkData = useCallback(async (id: string | string[] | undefined) => {
-    const { data } = await getFolderLinksData(id);
+    const data = await getFolderLinksData(id);
     
     if (!data) return;
 

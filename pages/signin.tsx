@@ -21,6 +21,15 @@ export default function SignIn() {
   const { email, password } = SIGN_IN_INIT_INFO;
   const router = useRouter();
 
+  useEffect(() => {
+    // accessToken이 존재하면 folder로 이동
+    const haveToken = localStorage.getItem(ACCESS_TOKEN_KEY);
+    if (haveToken) {
+      router.push('/folder')
+    }
+    return;
+  }, [router]);
+
   const handleEmailBlur = () => {
     setEmailErrorMsg(validEmailInput(emailInputValue));
   }
@@ -37,8 +46,8 @@ export default function SignIn() {
 
     const res = await loginAccount(emailInputValue, pwInputValue);
 
-    if (res.data) {
-      const accessToken = res.data?.accessToken;
+    if (res) {
+      const accessToken = res.accessToken;
       localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
       router.push('/folder')
     }
@@ -46,15 +55,6 @@ export default function SignIn() {
     setEmailErrorMsg(errorMessage.CHECK_EMAIL);
     setPWErrorMsg(errorMessage.CHECK_PW);
   }
-
-  useEffect(() => {
-    // accessToken이 존재하면 folder로 이동
-    const haveToken = localStorage.getItem(ACCESS_TOKEN_KEY);
-    if (haveToken) {
-      router.push('/folder')
-    }
-    return;
-  }, [router]);
 
   return (
     <>

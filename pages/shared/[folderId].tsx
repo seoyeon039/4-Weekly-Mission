@@ -6,10 +6,6 @@ import LinkList from "@/components/LinkList";
 import SearchBar from "@/components/SearchBar";
 import { useRouter } from "next/router";
 
-const INITIAL_PROFILE = {
-  image_source: '',
-  email: '',
-}
 const INITIAL_FOLDER= {
   name: '',
 }
@@ -20,7 +16,7 @@ const INITIAL_FOLDER_OWNER = {
 
 export default function SharedPage() {
   const [userId, setUserId] = useState(0);
-  const [folderData, setFolderData] = useState(INITIAL_FOLDER);
+  const [folderName, setFolderName] = useState('');
   const [folderOwnerData, setFolderOwnerData] = useState(INITIAL_FOLDER_OWNER);
   const [linkData, setLinkData] = useState<LinkCardData[]>([]);
   const [search, setSearch] = useState('');
@@ -41,10 +37,23 @@ export default function SharedPage() {
     setSearchWord(searchQuery);
   };
 
-  const getFolderOwnerData = useCallback(async () => {
-    const { data } = await getSharedFolderOwner(userId);
+  const getFolderData = useCallback(async () => {
+    const data = await getSharedFolderInfo(folderId);
     
-    if (!data[0]) return;
+    if (!data) return;
+
+    setUserId(data[0].user_id)
+    setFolderName(data[0].name);
+  }, [folderId])
+
+  useEffect(() => {
+    getFolderData();
+  }, [getFolderData])
+
+  const getFolderOwnerData = useCallback(async () => {
+    const data = await getSharedFolderOwner(userId);
+    
+    if (!data) return;
 
     setFolderOwnerData(data[0]);
   }, [userId])
@@ -53,26 +62,13 @@ export default function SharedPage() {
     getFolderOwnerData();
   }, [getFolderOwnerData]);
 
-  const getFolderData = useCallback(async () => {
-    const { data } = await getSharedFolderInfo(folderId);
-    
-    if (!data) return;
-
-    setFolderData(data[0]);
-  }, [folderId])
-
-  useEffect(() => {
-    getFolderData();
-  }, [getFolderData])
-
   const getFolderLinksData = useCallback(async () => {
-    const { data } = await getSharedFolderLinks(userId, folderId);
+    const data = await getSharedFolderLinks(folderId);
     
     if (!data) return;
 
-    setFolderData(data);
     setLinkData(data);
-  }, [userId, folderId])
+  }, [folderId])
 
   useEffect(() => {
     getFolderLinksData();
@@ -80,7 +76,7 @@ export default function SharedPage() {
 
   return (
     <>
-      <Header folderData={folderData} folderOwnerData={folderOwnerData}/>
+      <Header folderName={folderName} folderOwnerData={folderOwnerData}/>
       <SearchBar
         inputValue={search}
         searchWord={searchWord}

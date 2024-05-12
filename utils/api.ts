@@ -14,9 +14,7 @@ async function getApi(url: string) {
     const body = await response.json();
     return body;
   } catch (error) {
-    console.error("API 요청 중 오류가 발생했습니다:", error);
-    // 예외 처리 코드 추가
-    return null; // 또는 다른 적절한 처리
+    return null;
   }
 }
 

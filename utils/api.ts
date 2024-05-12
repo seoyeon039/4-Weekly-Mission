@@ -1,18 +1,23 @@
-const BASE_URL = 'https://bootcamp-api.codeit.kr/api'
+const BASE_URL = 'https://bootcamp-api.codeit.kr/api/linkbrary/v1'
 
 const USER_INFO_URL = `${BASE_URL}/users`;
-const SHARED_DATA_API_URL = `${BASE_URL}/folders`;
+const FOLDER_DATA_API_URL = `${BASE_URL}/folders`;
 const FOLDER_All_DATA_API_URL = `${BASE_URL}/links`;
-const FOLDER_DATA_API_URL = `${BASE_URL}/users/1/links?folderId=`;
 
 async function getApi(url: string) {
-  const response = await fetch(url);
-  if (!response?.ok) {
-    throw new Error("정보를 불러오는데 실패했습니다.")
-  }
+  try {
+    const response = await fetch(url);
+    if (!response?.ok) {
+      throw new Error("정보를 불러오는데 실패했습니다.");
+    }
 
-  const body = await response.json();
-  return body;
+    const body = await response.json();
+    return body;
+  } catch (error) {
+    console.error("API 요청 중 오류가 발생했습니다:", error);
+    // 예외 처리 코드 추가
+    return null; // 또는 다른 적절한 처리
+  }
 }
 
 //페이지 유저 데이터 조회
@@ -40,19 +45,19 @@ export function getSharedFolderOwner(id: number) {
 
 //shared 페이지 폴더 데이터 조회
 export function getSharedFolderInfo(folderId: string | string[] | undefined) {
-  return getApi(`${SHARED_DATA_API_URL}/${folderId}`);
+  return getApi(`${FOLDER_DATA_API_URL}/${folderId}`);
 }
 
 //shared 페이지 폴더의 링크 데이터 조회
-export function getSharedFolderLinks(userId: number, folderId: string | string[] | undefined) {
-  const query = `/${userId}/links?folderId=${folderId}`
-  return getApi(USER_INFO_URL + query);
+export function getSharedFolderLinks(folderId: string | string[] | undefined) {
+  const url = `${FOLDER_DATA_API_URL}/${folderId}/links`
+  return getApi(url);
 }
 
 //folder 페이지 폴더 데이터목록 조회
 export async function getFolderLists() {
   const accessToken = localStorage.getItem('accessToken');
-  const response = await fetch(SHARED_DATA_API_URL, {
+  const response = await fetch(FOLDER_DATA_API_URL, {
     method: 'GET',
     headers: {
       "Authorization": `Bearer ${accessToken}`
@@ -86,14 +91,14 @@ export async function getAllLinksData() {
 }
 
 //folder 페이지 폴더에 저장된 링크 데이터조회
-export function getFolderLinksData(id: string | string[] | undefined) {
-  const path = FOLDER_DATA_API_URL + id;
+export function getFolderLinksData(folderId: string | string[] | undefined) {
+  const path = `${FOLDER_DATA_API_URL}/${folderId}/links`;
   return getApi(path);
 }
 
 //로그인 API
 export async function loginAccount(email: string, password: string) {
-  const res = await fetch (`${BASE_URL}/sign-in`, {
+  const res = await fetch (`${BASE_URL}/auth/sign-in`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -108,7 +113,7 @@ export async function loginAccount(email: string, password: string) {
 
 //회원가입 전 이메일 중복체크
 export async function checkAccount(email: string) {
-  const res = await fetch(`${BASE_URL}/check-email`, {
+  const res = await fetch(`${BASE_URL}/users/check-email`, {
     method: 'POST',
     headers: {
       "Content-Type": "application/json",
@@ -123,7 +128,7 @@ export async function checkAccount(email: string) {
 
 //회원가입 API
 export async function addNewUser(email: string, password: string) {
-  const res = await fetch(`${BASE_URL}/sign-up`, {
+  const res = await fetch(`${BASE_URL}/auth/sign-up`, {
     method: 'POST',
     headers: {
     'Content-Type': 'application/json',

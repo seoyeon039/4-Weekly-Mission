@@ -19,6 +19,7 @@ function PageLayout({ children }: PageLayoutProp) {
   const router = useRouter();
   const { pathname } = router;
   const navClassName = pathname.includes('folder') ? 'folderNav' : 'sharedNav';
+  const isSignPage = pathname.includes('signin') || pathname.includes('signup') ? false : true;
 
   useEffect(() => {
     const checkAccessToken = async () => {
@@ -44,7 +45,7 @@ function PageLayout({ children }: PageLayoutProp) {
 
   return (
     <>
-      <NavigationBar className={navClassName} profileData={profileData} isLoginStatus={isLoginStatus}/>
+      {isSignPage && <NavigationBar className={navClassName} profileData={profileData} isLoginStatus={isLoginStatus}/>}
       <main>{children}</main>
       <Footer />
     </>

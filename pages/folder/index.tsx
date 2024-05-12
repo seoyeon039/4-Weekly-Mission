@@ -38,7 +38,8 @@ export default function FolderPage() {
   const handleFolderButtonClick = (id: number, name: string) => {
     setCurrentId(id);
     setFolderName(name);
-    router.push(`/folder/${id}`)
+    if (id === 0) return router.push(`/folder`);
+    router.push(`/folder/${id}`);
   }
 
   //폴더 이름 가져오는 함수.

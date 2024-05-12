@@ -138,3 +138,21 @@ export async function addNewUser(email: string, password: string) {
   
   return body;
 }
+
+//accessToken 만료시 refreshToken으로 다시 Token 발급
+export async function reissueToken() {
+  const refreshToken = localStorage.getItem('refreshToken');
+  const res = await fetch (`${BASE_URL}/auth/refresh-token`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      "refresh_token": refreshToken
+    }),
+  });
+
+  const body = await res.json();
+
+  return body;
+}

@@ -12,6 +12,7 @@ import GoogleIcon from '@/public/images/Icon_Google.svg';
 import KakaoIcon from '@/public/images/Icon_Kakao2.svg';
 
 const ACCESS_TOKEN_KEY = 'accessToken';
+const REFRESH_TOKEN_KEY = 'refreshToken'
 
 export default function SignIn() {
   const [emailErrorMsg, setEmailErrorMsg] = useState('');
@@ -48,7 +49,9 @@ export default function SignIn() {
 
     if (res) {
       const accessToken = res.accessToken;
+      const refreshToken = res.refreshToken;
       localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+      localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
       router.push('/folder')
     }
 
